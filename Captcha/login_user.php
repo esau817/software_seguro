@@ -9,7 +9,7 @@
       $myusername = mysqli_real_escape_string($conn,$_POST['username']);
       $mypassword = mysqli_real_escape_string($conn,$_POST['password']); 
       
-      $sql = "SELECT id FROM my_user WHERE username = '$myusername' and passcode = '$mypassword'";
+      $sql = "SELECT id FROM my_user WHERE username = '$myusername' and password_1 = '$mypassword'";
       $result = mysqli_query($conn,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       $active = $row['active'];
@@ -23,7 +23,7 @@
          header("location: user_welcome.php");
       }else
        {
-         $error = "Datos de sesión incorrectos";
+         $error = "Your information is wrong, try again please";
       }
    }
 
