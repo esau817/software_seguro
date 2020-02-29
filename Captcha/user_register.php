@@ -1,7 +1,8 @@
+
 <?php
 //Excluí el método md5 para evitar problemas de encriptación
-session_start();
 include("config.php");
+
 
 
 $username   = "";
@@ -23,7 +24,7 @@ if (isset($_POST['reg_user'])) {
   if (empty($username)) { array_push($errors, "Username is required"); }
   if (empty($password_1)) { array_push($errors, "Password is required"); }
   if ($password_1 != $password_2) {
-    $PHPtext = "Your PHP alert!";
+	array_push($errors, "The passwords do not match");
   }
 
 //Verificamos duplicados 

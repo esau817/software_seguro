@@ -16,23 +16,36 @@
       
       $count = mysqli_num_rows($result);
 
-
       if($count == 1) {
          $_SESSION['login_user'] = $myusername;
          
          header("location: user_welcome.php");
-      }else
+      }
+      
+      else
        {
          $error = "Your information is wrong, try again please";
       }
    }
 
+    if (isset($_POST['submit'])) {
+      $username = $_POST['username'];
+      $secretKey = "6LflXt0UAAAAAM5b9cHM5ZXPq0i8TR4j9fCVyQSi";
+      $responseKey = $_POST['g-recaptcha-response'];
+      $userIP = $_SERVER['REMOTE_ADDR'];
+
+      $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$responseKey&remoteip=$userIP";
+      $response = file_get_contents($url);
+      $response = json_decode($response);
+      if ($response->success)
+          echo "Log in successfuly.";
+      else
+          echo "Verification failed! You must be a robot!";
+  }
 ?>
-<html>
-   
+<html> 
    <head>
-      <title>Inicio de sesión</title>
-      
+      <title>Inicio de sesión</title>     
       <style type = "text/css">
          body {
             font-family:Arial, Helvetica, sans-serif;
@@ -47,7 +60,7 @@
             border:#666666 solid 1px;
          }
       </style>
-      
+       <script src="https://www.google.com/recaptcha/api.js?render=6LfGXN0UAAAAAK_JHpXQ4kvu0NO7Oh0lr5y9Ih6c"></script>
    </head>
    
    <body bgcolor = "#FFFFFF">
@@ -61,17 +74,14 @@
                <form action = "" method = "post">
                   <label>UserName  :</label><input type = "text" name = "username" class = "box"/><br /><br />
                   <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
-                  <input type = "submit" value = " Log in "/><br />
+                  <input type = "submit" name="submit"/><br />
+                  <div class="g-recaptcha" data-sitekey="6LflXt0UAAAAAEDUBv1E0g1YtEpWgnl6emhBNLE7"></div>
                </form>
                <h1><a href = "register.php">Register</a></h1>
-               
               <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
-					
             </div>
-				
          </div>
-			
       </div>
-
+         <script src='https://www.google.com/recaptcha/api.js'></script>
    </body>
 </html>
