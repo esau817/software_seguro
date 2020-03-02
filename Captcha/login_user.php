@@ -1,9 +1,9 @@
 <?php
    include("config.php");
-   session_start();
    $error = '';
    
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
+   if($_SERVER["REQUEST_METHOD"] == "POST") 
+   {
       // enviado de usuario y contraseña de admin
       
       $myusername = mysqli_real_escape_string($conn,$_POST['username']);
@@ -16,32 +16,36 @@
       
       $count = mysqli_num_rows($result);
 
-      if($count == 1) {
-         $_SESSION['login_user'] = $myusername;
-         
-         header("location: user_welcome.php");
+      //if($count == 1) 
+      //{
+         //$_SESSION['login_user'] = $myusername;
+         //header("location: user_welcome.php");
+      //}
+      if(isset($_POST['submit']) && $count == 1) 
+      {
+         $username = $_POST['username'];
+         $secretKey = "6LflXt0UAAAAAM5b9cHM5ZXPq0i8TR4j9fCVyQSi";
+         $responseKey = $_POST['g-recaptcha-response'];
+         $userIP = $_SERVER['REMOTE_ADDR'];
+   
+         $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$responseKey&remoteip=$userIP";
+         $response = file_get_contents($url);
+         $response = json_decode($response);
+         if ($response->success)
+         {
+             //echo "Log in successfuly.";
+             header("location: user_welcome.php");
+         }
+         else
+         {
+            echo "Verification failed! You must be a robot!";
+         }
       }
-      
       else
-       {
+      {
          $error = "Your information is wrong, try again please";
       }
    }
-
-    if (isset($_POST['submit'])) {
-      $username = $_POST['username'];
-      $secretKey = "6LflXt0UAAAAAM5b9cHM5ZXPq0i8TR4j9fCVyQSi";
-      $responseKey = $_POST['g-recaptcha-response'];
-      $userIP = $_SERVER['REMOTE_ADDR'];
-
-      $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$responseKey&remoteip=$userIP";
-      $response = file_get_contents($url);
-      $response = json_decode($response);
-      if ($response->success)
-          echo "Log in successfuly.";
-      else
-          echo "Verification failed! You must be a robot!";
-  }
 ?>
 <html> 
    <head>

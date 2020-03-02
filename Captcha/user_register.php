@@ -15,8 +15,8 @@ $errors = array();
 if (isset($_POST['reg_user'])) {
 //Recibir datos correctos de los campos
   $username   =   mysqli_real_escape_string($conn, $_POST['username']);
-  $password_1 = mysqli_real_escape_string($conn, $_POST['password_1']);
-  $password_2 = mysqli_real_escape_string($conn, $_POST['password_2']);
+  $password_1 =   mysqli_real_escape_string($conn, $_POST['password_1']);
+  $password_2 =   mysqli_real_escape_string($conn, $_POST['password_2']);
   $fName      =   mysqli_real_escape_string($conn, $_POST['fName']);
   $pNumber    =   mysqli_real_escape_string($conn, $_POST['pNumber']);
 
