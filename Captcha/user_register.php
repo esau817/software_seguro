@@ -3,8 +3,6 @@
 //Excluí el método md5 para evitar problemas de encriptación
 include("config.php");
 
-
-
 $username   = "";
 $password_1 = "";
 $fName      = "";
@@ -31,13 +29,17 @@ if (isset($_POST['reg_user'])) {
   $user_check_query = "SELECT * FROM my_user WHERE username='$username' LIMIT 1";
   $result = mysqli_query($conn, $user_check_query);
   $user = mysqli_fetch_assoc($result);
-  
-  if ($user) { // if user exists
-    if ($user['username'] === $username) {
+
+// Si el usuario ya existe, se arroja lo siguiente 
+  if ($user) 
+  { 
+    if ($user['username'] === $username) 
+    {
       array_push($errors, "Username already exists");
     }
   }
 
+  //Si no hubo errores, se hace el registro de datos
   if (count($errors) == 0) {
   	$password =($password_1);
 

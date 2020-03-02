@@ -20,7 +20,7 @@
 <html>
 <head>
   <title>Register</title>
-  <script src="https://www.google.com/recaptcha/api.js?render=6LfGXN0UAAAAAK_JHpXQ4kvu0NO7Oh0lr5y9Ih6c"></script>
+<!-- NO TOCAR -->  <script src="https://www.google.com/recaptcha/api.js?render=6LfGXN0UAAAAAK_JHpXQ4kvu0NO7Oh0lr5y9Ih6c"></script>
 
 </head>
 <body>
@@ -56,6 +56,6 @@
   	</p>
 	  <div class="g-recaptcha" data-sitekey="6LflXt0UAAAAAEDUBv1E0g1YtEpWgnl6emhBNLE7"></div>
   </form>
-  <script src='https://www.google.com/recaptcha/api.js'></script>
+<!-- NO TOCAR -->  <script src='https://www.google.com/recaptcha/api.js'></script>
 </body>
 </html>

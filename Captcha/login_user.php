@@ -4,7 +4,7 @@
    
    if($_SERVER["REQUEST_METHOD"] == "POST") 
    {
-      // enviado de usuario y contraseña de admin
+      // enviado de usuario y contraseña
       
       $myusername = mysqli_real_escape_string($conn,$_POST['username']);
       $mypassword = mysqli_real_escape_string($conn,$_POST['password']); 
@@ -14,13 +14,9 @@
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       $active = $row['active'];
       
+      //Usamos $count para verificar que haya un usuario con los datos obtenidos
       $count = mysqli_num_rows($result);
 
-      //if($count == 1) 
-      //{
-         //$_SESSION['login_user'] = $myusername;
-         //header("location: user_welcome.php");
-      //}
       if(isset($_POST['submit']) && $count == 1) 
       {
          $username = $_POST['username'];
@@ -33,7 +29,6 @@
          $response = json_decode($response);
          if ($response->success)
          {
-             //echo "Log in successfuly.";
              header("location: user_welcome.php");
          }
          else
@@ -41,6 +36,7 @@
             echo "Verification failed! You must be a robot!";
          }
       }
+      //Error de datos
       else
       {
          $error = "Your information is wrong, try again please";
@@ -64,7 +60,7 @@
             border:#666666 solid 1px;
          }
       </style>
-       <script src="https://www.google.com/recaptcha/api.js?render=6LfGXN0UAAAAAK_JHpXQ4kvu0NO7Oh0lr5y9Ih6c"></script>
+      <!-- NO TOCAR --> <script src="https://www.google.com/recaptcha/api.js?render=6LfGXN0UAAAAAK_JHpXQ4kvu0NO7Oh0lr5y9Ih6c"></script>
    </head>
    
    <body bgcolor = "#FFFFFF">
@@ -86,6 +82,6 @@
             </div>
          </div>
       </div>
-         <script src='https://www.google.com/recaptcha/api.js'></script>
+   <!-- NO TOCAR -->   <script src='https://www.google.com/recaptcha/api.js'></script>
    </body>
 </html>
