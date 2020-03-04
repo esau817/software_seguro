@@ -18,44 +18,60 @@
  ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Register</title>
-<!-- NO TOCAR -->  <script src="https://www.google.com/recaptcha/api.js?render=6LfGXN0UAAAAAK_JHpXQ4kvu0NO7Oh0lr5y9Ih6c"></script>
+	<title>Register</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- NO TOCAR -->
+	<script src="https://www.google.com/recaptcha/api.js?render=6LfGXN0UAAAAAK_JHpXQ4kvu0NO7Oh0lr5y9Ih6c"></script>
 
 </head>
-<body>
-  <div class="header">
-  	<h2>Register</h2>
-  </div>
-  <form method="post" action="register.php">
-  	<div class="input-group">
-  	  <label>User</label>
-  	  <input type="text" name="username" value="<?php echo $username; ?>">
-  	</div>
-  	<div class="input-group">
-  	  <label>Password</label>
-  	  <input type="password" name="password_1">
-  	</div>
-  	<div class="input-group">
-  	  <label>Confirm Password</label>
-  	  <input type="password" name="password_2">
-  	</div>
-	  <div class="input-group">
-  	  <label>Full Name</label>
-  	  <input type="text" name="fName">
-  	</div>
-	  <div class="input-group">
-  	  <label>Phone Number</label>
-  	  <input type="text" name="pNumber">
-  	</div>
-  	<div class="input-group">
-  	  <button type="submit" class="btn" name="submit">Registrar</button>
-  	</div>
-  	<p>
-  	<a href="login_user.php">Cancelar</a>
-  	</p>
-	  <div class="g-recaptcha" data-sitekey="6LflXt0UAAAAAEDUBv1E0g1YtEpWgnl6emhBNLE7"></div>
-  </form>
-<!-- NO TOCAR -->  <script src='https://www.google.com/recaptcha/api.js'></script>
+
+<body style="background: #F9F9F9">
+	<div class="header row justify-content-center p-3" style="background: #15A4B2">
+		<h2 style="color: white" class="text-uppercase font-weight-bold">Register</h2>
+	</div>
+	<div class="row justify-content-center pt-5" style="">
+		<form method="post" class="col-8 border border-secondary rounded" action="register.php">
+			<div class="input-group row my-2">
+				<div class="col-4"><label>User: </label></div>
+				<div class="col-8"><input type="text" class="form-control" name="username"
+						value="<?php echo $username; ?>"></div>
+			</div>
+			<div class="input-group row my-2">
+				<div class="col-4"><label>Password: </label></div>
+				<div class="col-8"><input type="password" class="form-control" name="password_1"></div>
+			</div>
+			<div class="input-group row my-2">
+				<div class="col-4"><label>Confirm Password: </label></div>
+				<div class="col-8"><input type="password" class="form-control" name="password_2"></div>
+			</div>
+			<div class="input-group row my-2">
+				<div class="col-4"><label>Full Name: </label></div>
+				<div class="col-8"><input type="text" class="form-control" name="fName"></div>
+			</div>
+			<div class="input-group row my-2">
+				<div class="col-4"><label>Phone Number: </label></div>
+				<div class="col-8"><input type="text" class="form-control" name="pNumber"></div>
+			</div>
+			<div class="g-recaptcha row my-4 justify-content-center"
+				data-sitekey="6LflXt0UAAAAAEDUBv1E0g1YtEpWgnl6emhBNLE7"></div>
+
+			<div class="row my-2 justify-content-center">
+				<div class="input-group col-2">
+					<button type="submit" class="btn btn-primary" name="submit">Registrar</button>
+				</div>
+				<div class="col-2">
+					<a href="index .php" class="btn btn-outline-primary">Cancelar</a>
+				</div>
+			</div>
+
+
+		</form>
+	</div>
+	<!-- NO TOCAR -->
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 </body>
+
 </html>

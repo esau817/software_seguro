@@ -1,16 +1,17 @@
-
 <?php
 //Excluí el método md5 para evitar problemas de encriptación
 include("config.php");
 
+
 $username   = "";
 $password_1 = "";
+$password_2 = "";
 $fName      = "";
 $pNumber    = "";
 $errors = array(); 
 
 
-if (isset($_POST['reg_user'])) {
+if (isset($_POST['submit'])) {
 //Recibir datos correctos de los campos
   $username   =   mysqli_real_escape_string($conn, $_POST['username']);
   $password_1 =   mysqli_real_escape_string($conn, $_POST['password_1']);
@@ -22,8 +23,8 @@ if (isset($_POST['reg_user'])) {
   if (empty($username)) { array_push($errors, "Username is required"); }
   if (empty($password_1)) { array_push($errors, "Password is required"); }
   if ($password_1 != $password_2) {
-	array_push($errors, "The passwords do not match");
-  }
+    array_push($errors, "The two passwords do not match");
+    }
 
 //Verificamos duplicados 
   $user_check_query = "SELECT * FROM my_user WHERE username='$username' LIMIT 1";
@@ -43,10 +44,10 @@ if (isset($_POST['reg_user'])) {
   if (count($errors) == 0) {
   	$password =($password_1);
 
-  	$query = "INSERT INTO my_user (username, password_1, fName, pNumber) 
+  	$query = "INSERT INTO my_user(username, password_1, fName, pNumber) 
   			  VALUES('$username', '$password', '$fName', '$pNumber')";
   	mysqli_query($conn, $query);
-  	header('location: login_user.php');
+  	header('location: index.php');
   }
 }
 
